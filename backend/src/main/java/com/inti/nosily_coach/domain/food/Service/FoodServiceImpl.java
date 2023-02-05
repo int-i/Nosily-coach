@@ -1,4 +1,4 @@
-package com.inti.nosily_coach.Service;
+package com.inti.nosily_coach.domain.food.Service;
 
 import com.inti.nosily_coach.domain.food.model.Food;
 import com.inti.nosily_coach.domain.food.repository.FoodRepositoryCustom;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FoodService {
+public class FoodServiceImpl implements FoodService {
     private final FoodRepositoryCustom foodRepositoryCustom = new FoodRepositoryCustomImpl();
 
     public Long insertFood(Food food) { // 중복된 음식인지 확인하는 메서드
