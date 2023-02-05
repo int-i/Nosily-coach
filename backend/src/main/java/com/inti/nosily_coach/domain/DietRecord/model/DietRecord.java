@@ -4,21 +4,21 @@ import com.inti.nosily_coach.domain.Eat.model.Eat;
 import com.inti.nosily_coach.domain.Member.model.Member;
 import com.inti.nosily_coach.domain.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@ToString
 public class DietRecord extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private Member member; // 회원 아이디
 
     @OneToMany(mappedBy = "dietRecord", cascade = CascadeType.ALL)
     private List<Eat> eats = new ArrayList<>();
@@ -27,7 +27,7 @@ public class DietRecord extends BaseEntity {
     private String time; // 아침, 점심, 저녁, 간식
 
     @Column(length = 300)
-    private String memo;
+    private String memo; // 메모
 
     @Builder(access = AccessLevel.PRIVATE)
     private DietRecord(Member member, String time, String memo) {
