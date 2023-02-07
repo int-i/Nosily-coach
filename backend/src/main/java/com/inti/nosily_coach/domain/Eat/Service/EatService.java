@@ -1,29 +1,22 @@
 package com.inti.nosily_coach.domain.Eat.Service;
 
-import com.inti.nosily_coach.domain.Eat.DTO.EatDTO;
+import com.inti.nosily_coach.domain.DietRecord.model.DietRecord;
+import com.inti.nosily_coach.domain.Eat.DTO.DtoEat;
+import com.inti.nosily_coach.domain.Eat.DTO.ModifyEat;
+import com.inti.nosily_coach.domain.Eat.DTO.RequestEat;
+import com.inti.nosily_coach.domain.Eat.DTO.ResponseEat;
 import com.inti.nosily_coach.domain.Eat.model.Eat;
+import com.inti.nosily_coach.domain.food.model.Food;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public interface EatService {
-    Long register(EatDTO eat_dto);
-
-    default Eat dtoToEntity(EatDTO eat_dto) { // 서비스 계층에서 파라미터를 DTO 타입으로 받기 때문에 JPA로 처리하기 위해 엔티티 타입의 객체로 변환
-        Eat eat_entity = Eat.builder()
-                .dietRecord(eat_dto.getDietRecord())
-                .food(eat_dto.getFood())
-                .intake(eat_dto.getIntake())
-                .build();
-        return eat_entity;
-    }
-
-    default EatDTO entityToDto(Eat eat_entity) {
-        EatDTO eat_dto = EatDTO.builder()
-                .id(eat_entity.getId())
-                .dietRecord(eat_entity.getDietRecord())
-                .food(eat_entity.getFood())
-                .intake(eat_entity.getIntake())
-                .build();
-        return eat_dto;
-    }
-
-
+    List<DtoEat> viewEat(Long foodId, Pageable pageable);
+    ResponseEat createEat(DietRecord dietRecord, Food food, RequestEat requestEat);
+    ModifyEat modifyEat(Long memberId, Food food, Long DietRecordId, RequestEat requestEat);
+    void selectEat();
 }
