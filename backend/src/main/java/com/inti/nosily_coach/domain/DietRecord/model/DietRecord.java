@@ -20,26 +20,33 @@ public class DietRecord extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "dietRecord", cascade = CascadeType.ALL)
-    private List<Eat> eats = new ArrayList<>();
+    @Column(length = 30)
+    private String foodName; // 음식이름
 
     @Column(nullable = false)
-    private String time; // 아침, 점심, 저녁, 간식
+    private Long intake; // 섭취량
 
-    @Column(length = 300)
-    private String memo;
+    @Column(nullable = false)
+    private Long kcal; // 칼로리
+
+    @Column(length = 1000)
+    private String memo; // 메모
 
     @Builder(access = AccessLevel.PRIVATE)
-    private DietRecord(Member member, String time, String memo) {
+    private DietRecord(Member member, String foodName, Long intake, Long kcal, String memo) {
         this.member = member;
-        this.time = time;
+        this.foodName = foodName;
+        this.intake = intake;
+        this.kcal = kcal;
         this.memo = memo;
     }
 
-    public static DietRecord newDietRecord(Member member, String time, String memo) {
-        return DietRecord.builder()
-                .member(member)
-                .time(time)
+    // build()를 호출하는 메서드
+    public static DietRecord newDietRecord(Member member, String foodName, Long intake, Long kcal, String memo) {
+        return DietRecord.builder().member(member)
+                .foodName(foodName)
+                .intake(intake)
+                .kcal(kcal)
                 .memo(memo)
                 .build();
     }
