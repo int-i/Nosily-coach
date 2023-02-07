@@ -1,0 +1,19 @@
+{
+  "name": "nosily_coach",
+  "version": "0.0.1",
+  "description": "inti's Nosily coach project",
+  "main": "index.js",
+  "scripts": {
+    "festart": "cd frontend && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/int-i/Nosily-coach.git"
+  },
+  "author": "nosily coach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/int-i/Nosily-coach/issues"
+  },
+  "homepage": "https://github.com/int-i/Nosily-coach#readme"
+}

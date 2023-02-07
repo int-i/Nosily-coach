@@ -20,13 +20,13 @@
 ---
 
 - 인공지능
-  - 언어: Python 3.10
-  - 프레임워크: TensorFlow 2.10.0, Pandas 1.5.3
+  - 언어: Python 3.9.16
+  - 프레임워크: TensorFlow 2.11.0, Pandas 1.4.4
 - 백엔드
   - 언어: Java 17
   - 프레임워크: Spring Boot 3.0.2
 - 프론트엔드
-  - 언어: TypeScript 4.9.4
+  - 언어: JavaScript ES6
   - 프레임워크: React 18.2.0
 
 ### 꼬치코치 기능 설명
@@ -45,3 +45,25 @@
    - 여러 운동 루틴 선택지를 제공하여 사용자가 선택하는 방식
 6. 타이머
    - 각 운동 시간 및 쉬는 시간을 재주는 기능
+
+## 개발 환경 빌드 방법
+
+### Frontend
+
+1. clone한 본 프로젝트를 VS Code를 통해 연다.
+2. `` Ctrl + ` `` 를 눌러 터미널을 열고, `cd frontend`를 입력한다.
+3. 마찬가지로 터미널에서 `npm install`을 입력해 빌드에 필요한 node module들을 다운받는다.
+4. 터미널에서 `cd ..`를 입력해 `Nosily-coach` 디렉터리로 빠져나온다.
+5. 마지막으로 터미널에서 `npm run festart`를 입력해 frontend 프로젝트를 빌드한다.
+
+### Backend
+
+1. clone한 본 프로젝트를 IntelliJ를 통해 연다.
+2. 꼬치코치 notion 페이지에 올라와있는 `application-oauth.properties` 파일을 다운받아 backend/src/main/resources 경로에 넣어준다.
+3. Project Structure로 들어가서 `SDK`가 17 이상인지 확인하고, `Language level`이 17인지 확인한다.
+4. Settings을 열고 `Build, Execution, Deployment > Build Tools > Gradle`로 들어가서
+   - `Build and run using`, `Run tests using` : IntelliJ IDEA로 바꿨는지 확인
+   - `Gradle JVM` : Project SDK로 설정
+5. 마찬가지로 Settings에서 `Builld, Execution, Deployment > Compiler > Annotation Processors`로 들어가서
+   - `Enable annotation processing` 체크되어있는지 확인
+6. 그런 다음 Gradle을 다시 로드하면 빌드가 진행된다.

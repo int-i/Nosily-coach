@@ -1,38 +1,21 @@
 package com.inti.nosily_coach.domain.DietRecord.model;
 
-import com.inti.nosily_coach.domain.Member;
+import com.inti.nosily_coach.domain.Eat.model.Eat;
+import com.inti.nosily_coach.domain.Member.model.Member;
+import com.inti.nosily_coach.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDate;
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Getter // 알아서 정보를 불러오는 함수가 만들어짐
-@NoArgsConstructor // 생성자가 알아서 만들어짐
-public class DietRecord {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDate createAt;
-
-    @LastModifiedDate
-    private LocalDate updatedAt;
-
-    public void updateUpdatedAt(@NotNull LocalDate updatedAt)
-    {
-        this.updatedAt = updatedAt;
-    }
-
+@Getter
+@NoArgsConstructor
+public class DietRecord extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -67,5 +50,4 @@ public class DietRecord {
                 .memo(memo)
                 .build();
     }
-
 }

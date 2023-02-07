@@ -1,4 +1,4 @@
-package com.inti.nosily_coach.domain;
+package com.inti.nosily_coach.domain.Member.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -27,16 +27,24 @@ public class Member {
     @Column(name = "provider", nullable = false)
     private String provider;
 
-    @Column(name = "nickname", nullable = true, unique = true)
+    @Column(name = "nickname", unique = true)
     private String nickname;
 
+    @Column(name = "sex", unique = true)
+    private String sex;
+
+    @Column(name = "age", unique = true)
+    private String age;
+
     @Builder //생성을 Builder 패턴으로 하기 위해서
-    public Member(Long id, String name, String email, String provider, String nickname) {
+    public Member(Long id, String name, String email, String provider, String nickname, String sex, String age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.provider = provider;
         this.nickname = nickname;
+        this.sex = sex;
+        this.age = age;
     }
 
 
