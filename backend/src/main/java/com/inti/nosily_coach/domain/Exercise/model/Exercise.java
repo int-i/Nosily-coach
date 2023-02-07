@@ -33,10 +33,10 @@ public class Exercise extends BaseEntity {
     private String url; // 운동영상 url
 
     @Column(nullable = false)
-    private Long recCount; // 1회 추천 횟수
+    private String recCount; // 1회 추천 횟수
 
     @Column(nullable = false)
-    private Long recSet; // set 추천 횟수
+    private String recSet; // set 추천 횟수
 
     @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<SelectedExercise> selectedExercises = new ArrayList<>();
