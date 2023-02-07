@@ -8,10 +8,7 @@ import lombok.*;
 
 @Entity
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Eat extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dietRecord_id")
@@ -21,18 +18,31 @@ public class Eat extends BaseEntity {
     @JoinColumn(name = "food_id")
     private Food food; // 음식 id
 
+    @Column(nullable = false)
+    private String time; // 아침, 점심, 저녁, 간식
+
     @Column
     private Long intake; // 섭취량
 
     @Builder(access = AccessLevel.PRIVATE)
-    private Eat(DietRecord dietRecord, Food food) {
+    private Eat(DietRecord dietRecord, Food food, String time, Long intake) {
         this.dietRecord = dietRecord;
         this.food = food;
+        this.time = time;
+        this.intake = intake;
     }
 
-    public static Eat newEat(DietRecord dietRecord, Food food) {
+    public static Eat newEat(DietRecord dietRecord, Food food, String time, Long intake) {
         return Eat.builder()
                 .dietRecord(dietRecord)
-                .food(food).build();
+                .food(food)
+                .time(time)
+                .intake(intake)
+                .build();
+    }
+
+    public void updateEat(String time, Long intake) { // 업데이트하는 메서드
+        this.time = time;
+        this.intake = intake;
     }
 }
