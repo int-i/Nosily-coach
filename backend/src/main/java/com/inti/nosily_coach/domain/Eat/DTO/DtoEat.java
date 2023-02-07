@@ -13,11 +13,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class EatDTO {
-    private Long id;
-    private DietRecord dietRecord;
-    private Food food;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+public class DtoEat {
+    private Long FoodId;
+    private String foodName;
+    private String time;
     private Long intake;
+
+    public static DtoEat of(Long foodId, String foodName, String time, Long intake) {
+        return new DtoEat(foodId, foodName, time, intake);
+    }
 }
